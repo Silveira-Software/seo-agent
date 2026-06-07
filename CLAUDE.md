@@ -1,42 +1,42 @@
-# SEO Agent — mikefutia.com
+# Agente SEO
 
-## What This Project Is
-An SEO intelligence system that connects to Google Search Console, identifies keyword gaps, maps competitors, and generates a weekly content plan and HTML dashboard — all from a single prompt.
+## O Que é Este Projeto
+Um sistema de inteligência SEO que conecta ao Google Search Console, identifica lacunas de palavras-chave, mapeia concorrentes e gera um plano de conteúdo semanal e um dashboard HTML — tudo a partir de um único prompt.
 
-## Session Start Protocol
-At the start of every session:
-1. Read the skill file(s) relevant to today's task
-2. Read brand-voice.md before any content task
-3. Check /reports/ for the most recent outputs before running downstream skills
+## Protocolo de Início de Sessão
+No início de cada sessão:
+1. Leia o(s) arquivo(s) de skill relevantes para a tarefa de hoje
+2. Leia brand-voice.md antes de qualquer tarefa de conteúdo
+3. Verifique /reports/ para as saídas mais recentes antes de executar skills downstream
 
-## Skills Available
-- skills/gap-finder.md — keyword discovery, gap zone analysis, action recommendations
-- skills/competitor-intel.md — competitive intelligence, threat levels, why they win
-- skills/brand-writer.md — content planning, article writing, brand voice
+## Skills Disponíveis
+- skills/gap-finder.md — descoberta de palavras-chave, análise de zonas de lacuna, recomendações de ação
+- skills/competitor-intel.md — inteligência competitiva, níveis de ameaça, por que estão ganhando
+- skills/brand-writer.md — planejamento de conteúdo, redação de artigos, voz da marca
 
-## Key Commands
-- "Run this week's gap analysis" → reads skills/gap-finder.md, runs scripts/gap_finder.py
-- "Run competitor intelligence" → reads skills/competitor-intel.md, runs scripts/competitor_intel.py
-- "Generate this week's content plan" → reads skills/brand-writer.md, runs scripts/content_plan.py
-- "Build the dashboard" → runs scripts/build_dashboard.py using this week's reports
-- "Run the full weekly workflow" → runs all four in sequence, builds dashboard at the end
+## Comandos-Chave
+- "Execute a análise de lacunas desta semana" → lê skills/gap-finder.md, executa scripts/gap_finder.py
+- "Execute inteligência competitiva" → lê skills/competitor-intel.md, executa scripts/competitor_intel.py
+- "Gere o plano de conteúdo desta semana" → lê skills/brand-writer.md, executa scripts/content_plan.py
+- "Construa o dashboard" → executa scripts/build_dashboard.py usando os relatórios da semana
+- "Execute o workflow semanal completo" → executa todos os quatro em sequência, constrói o dashboard no final
 
-## File Structure
-skills/             — skill instruction files (Claude reads these before acting)
-scripts/            — Python scripts Claude executes to produce outputs
-reports/            — weekly outputs saved as .md and .json files
-drafts/             — article drafts pending review
-brand-voice.md      — brand voice profile (update weekly)
-.env                — API credentials (never commit this)
+## Estrutura de Arquivos
+skills/             — arquivos de instrução de skills (Claude lê antes de agir)
+scripts/            — scripts Python que Claude executa para produzir saídas
+reports/            — saídas semanais salvas como .md e .json
+drafts/             — rascunhos de artigos pendentes de revisão
+brand-voice.md      — perfil de voz da marca (atualizar semanalmente)
+.env                — credenciais de API (nunca faça commit)
 
-## API Credentials (set in .env)
-GSC_CLIENT_SECRET_FILE=credentials.json   # Google OAuth client secret
-GSC_SITE_URL=sc-domain:mikefutia.com      # Your Search Console property
-DATAFORSEO_LOGIN=your_login               # Optional — enhances volume data
-DATAFORSEO_PASSWORD=your_password         # Optional
+## Credenciais de API (definir no .env)
+GSC_CLIENT_SECRET_FILE=credentials.json   # Client secret OAuth do Google
+GSC_SITE_URL=sc-domain:seu-dominio       # Sua propriedade do Search Console
+DATAFORSEO_LOGIN=seu_login                # Opcional — melhora dados de volume
+DATAFORSEO_PASSWORD=sua_senha             # Opcional
 
-## Output Format Rule
-Every script saves two files:
-1. A human-readable .md report → /reports/
-2. A machine-readable .json data file → /reports/
-The dashboard builder reads the .json files to render the HTML output.
+## Regra de Formato de Saída
+Todo script salva dois arquivos:
+1. Um relatório .md legível por humanos → /reports/
+2. Um arquivo de dados .json legível por máquina → /reports/
+O construtor de dashboard lê os arquivos .json para renderizar a saída HTML.
